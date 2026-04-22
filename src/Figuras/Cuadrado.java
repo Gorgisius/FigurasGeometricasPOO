@@ -4,7 +4,7 @@
  */
 package Figuras;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 /**
  *
@@ -13,13 +13,21 @@ import javax.swing.JOptionPane;
 public class Cuadrado extends FiguraGeometrica{
     double lado;
 
-    public Cuadrado(double lado) {
-        super("Cuadrado");
-        this.lado = pedirLado();
+    public Cuadrado(Scanner leer) {
+        this.nombre = pedirNombre(leer);
+        this.lado = pedirLado(leer);
     }
     
-    public final double pedirLado(){
-        return Double.parseDouble(JOptionPane.showInputDialog("Medida de lado: "));
+    public final String pedirNombre(Scanner leer){
+        System.out.println("Nombre");
+        System.out.print(">");
+        return leer.nextLine();
+    }
+    
+    public final double pedirLado(Scanner leer){
+        System.out.println("Lado");
+        System.out.print(">");
+        return leer.nextDouble();
     }
 
     @Override
@@ -35,6 +43,6 @@ public class Cuadrado extends FiguraGeometrica{
     @Override
     void mostrarInformacion(){
         System.out.println(this.nombre);
-        System.out.println("lado = " + this.lado);
+        System.out.println("Lado: " + this.lado);
     }
 }

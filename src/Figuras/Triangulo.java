@@ -4,6 +4,8 @@
  */
 package Figuras;
 
+import java.util.Scanner;
+
 /**
  *
  * @author extre
@@ -15,14 +17,39 @@ public class Triangulo extends FiguraGeometrica{
     double altura;
     
 
-    public Triangulo(double ladoBase, double lado1, double lado2, double altura) {
-        super("Triangulo");
-        this.ladoBase = ladoBase;
-        this.lado1 = lado1;
-        this.lado2 = lado2;
-        this.altura = altura;
+    public Triangulo(Scanner leer) {
+        this.nombre = pedirNombre(leer);
+        double[] arr = pedirLadosYAltura(leer);
+        this.ladoBase = arr[0];
+        this.lado1 = arr[1];
+        this.lado2 = arr[2];
+        this.altura = arr[3];
     }
 
+    final String pedirNombre(Scanner leer){
+        System.out.println("Nombre");
+        System.out.print(">");
+        return leer.nextLine();
+    }
+    
+    final double[] pedirLadosYAltura(Scanner leer){
+        double[] arr = new double[4];
+        System.out.println("Base");
+        System.out.print(">");
+        arr[0] = leer.nextDouble();
+        System.out.println("Altura");
+        System.out.print(">");
+        arr[1] = leer.nextDouble();
+        System.out.println("Lado");
+        System.out.print(">");
+        arr[2] = leer.nextDouble();
+        System.out.println("Lado");
+        System.out.print(">");
+        arr[3] = leer.nextDouble();
+        
+        return arr;
+    }
+    
     @Override
     void calcularArea() {
         this.area = (ladoBase*altura)/2;

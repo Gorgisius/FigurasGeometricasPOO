@@ -4,6 +4,9 @@
  */
 package Figuras;
 
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
 /**
  *
  * @author extre
@@ -11,24 +14,40 @@ package Figuras;
 public class Circulo extends FiguraGeometrica{
     double radio;
     
-    public Circulo(double radio) {
-        super("Circulo");
-        this.radio = radio;
+    public Circulo(Scanner leer) {
+        this.nombre = pedirNombre(leer);
+        this.radio = pedirRadio(leer);
+    }
+    
+    String pedirNombre(Scanner leer){
+        System.out.println("Nombre:");
+        System.out.print(">");
+        return leer.nextLine();
+    }
+    
+    double pedirRadio(Scanner leer){
+        System.out.println("Radio:");
+        System.out.print(">");
+        return leer.nextDouble();
     }
 
     @Override
-    void calcularArea() {
-        this.area =  Math.round(Math.PI*(radio*radio));
+    void calcularArea() { 
+        DecimalFormat df = new DecimalFormat("0.00");
+        String areaPreParse = df.format(Math.PI*(radio*radio));
+        this.area = Double.parseDouble(areaPreParse);
     }
 
     @Override
     void calcularPerimetro() {
-        this.perimetro = Math.round(Math.PI*(radio+radio));
+        DecimalFormat df = new DecimalFormat("0.00");
+        String preimetroPreParse = df.format(Math.PI*(radio+radio));
+        this.perimetro = Double.parseDouble(preimetroPreParse);
     }
     
     @Override
     void mostrarInformacion(){
         System.out.println(this.nombre);
-        System.out.println("radio = " + this.radio);
+        System.out.println("Radio: " + this.radio);
     }
 }
